@@ -4,7 +4,11 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Alert: typeof import('./src/pages/children/components/Alert.vue')['default']
     Counter: typeof import('./src/components/Counter.vue')['default']
+    ElAlert: typeof import('element-plus/es')['ElAlert']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     Footer: typeof import('./src/components/Footer.vue')['default']
   }
 }

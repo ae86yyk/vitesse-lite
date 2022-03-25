@@ -1,15 +1,25 @@
 <script setup lang="ts">
-const name = $ref('')
+import { useUserStore } from '@/stores/user'
+const user = useUserStore()
+const name = $ref(user.userName)
 
 const router = useRouter()
 const go = () => {
   if (name)
-    router.push(`/hi/${encodeURIComponent(name)}`)
+    router.push(`/children/${encodeURIComponent(name)}`)
+}
+const table = () => {
+  router.push('/table')
+}
+const logout = () => {
+  user.doLogout().then(() => {
+    router.push('/login')
+  })
 }
 </script>
 
 <template>
-  <div>
+  <div text-center>
     <div i-carbon-campsite text-4xl inline-block />
     <p>
       <a rel="noreferrer" href="https://github.com/antfu/vitesse-lite" target="_blank">
@@ -38,13 +48,15 @@ const go = () => {
     >
 
     <div>
-      <button
-        class="m-3 text-sm btn"
-        :disabled="!name"
-        @click="go"
-      >
+      <el-button m-3 text-sm type="primary" @click="go">
         Go
-      </button>
+      </el-button>
+      <el-button m-3 text-sm type="primary" @click="table">
+        table
+      </el-button>
+      <el-button m-3 text-sm type="primary" @click="logout">
+        logout
+      </el-button>
     </div>
   </div>
 </template>

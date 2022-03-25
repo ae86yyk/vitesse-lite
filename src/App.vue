@@ -1,6 +1,9 @@
 <template>
-  <main font-sans p="x-4 y-10" text="center gray-700 dark:gray-200">
+  <el-config-provider size="default" :z-index="3000" :locale="locale">
     <router-view />
-    <Footer />
-  </main>
+  </el-config-provider>
 </template>
+<script setup lang="ts">
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+const locale = ref(zhCn)
+</script>
