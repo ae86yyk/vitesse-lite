@@ -45,6 +45,12 @@ export default defineConfig({
         'vue/macros',
         'vue-router',
         '@vueuse/core',
+        {
+          '@/api': [
+            // default imports
+            ['default', 'api'],
+          ],
+        },
       ],
       resolvers: [ElementPlusResolver()],
       dts: true,

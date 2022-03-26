@@ -32,7 +32,6 @@
 </template>
 
 <script setup lang="ts">
-import { getFileList } from '@/api/table'
 const projectName = ref('')
 const query = reactive({
   projectName,
@@ -43,7 +42,7 @@ const {
   isLoading,
   response: tableData,
   execute: search,
-} = getFileList(query)
+} = api.table.getFileList(query)
 search()
 
 const debounced = refDebounced(projectName, 500)

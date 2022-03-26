@@ -1,7 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { useAsyncState } from '@vueuse/core'
 import { useCookies } from '@vueuse/integrations/useCookies'
-import { getInfo, getPublicKey, login, logout } from '@/api/user'
 import JSEncrypt from '@/composables/jsencrypt'
 
 const keyStr = 'ABCDEFGHIJKLMNOP' + 'QRSTUVWXYZabcdef' + 'ghijklmnopqrstuv' + 'wxyz0123456789+/' + '='
@@ -51,9 +49,9 @@ export const useUserStore = defineStore('user', () => {
       () => {
         return new Promise((resolve, reject) => {
           const { username, password } = userInfo
-          getPublicKey().then((response) => {
+          api.user.getPublicKey().then((response) => {
             const enPassword = encryptPasswd(password, response.data.publicKey, response.data.random)
-            return login({ userCode: username.trim(), enPassword, rememberMe: false, captcha: '' })
+            return api.user.login({ userCode: username.trim(), enPassword, rememberMe: false, captcha: '' })
           }).then((response: any) => {
             const { state } = response
             if (state === 'success') {
@@ -78,7 +76,7 @@ export const useUserStore = defineStore('user', () => {
 
   function doGetInfo() {
     return new Promise((resolve, reject) => {
-      getInfo().then((response: any) => {
+      api.user.getInfo().then((response: any) => {
         const { data_ } = response.result
 
         if (!data_)
@@ -97,7 +95,7 @@ export const useUserStore = defineStore('user', () => {
 
   function doLogout() {
     return new Promise((resolve, reject) => {
-      logout().then(() => {
+      api.user.logout().then(() => {
         cookies.remove('token')
         resolve('')
       }).catch((error) => {
