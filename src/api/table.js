@@ -2,23 +2,19 @@ import { useAxios } from '@vueuse/integrations/useAxios'
 import request from '@/composables/request'
 export default {
   getFileList(params) {
-    return useAxios(
-      '/bimEngine/linkManager/getProjectPage',
-      {
-        method: 'get',
-        params,
-      },
-      request,
-      { immediate: false },
-    )
+    const option = {
+      url: '/bimEngine/linkManager/getProjectPage',
+      method: 'get',
+      params,
+    }
+    return useAxios(option.url, option, request, { immediate: false })
   },
   getFileList1(params) {
-    return request(
-      {
-        url: '/bimEngine/linkManager/getProjectPage',
-        method: 'get',
-        params,
-      },
-    )
+    const option = {
+      url: '/bimEngine/linkManager/getProjectPage',
+      method: 'get',
+      params,
+    }
+    return request(option)
   },
 }

@@ -1,31 +1,33 @@
 import request from '@/composables/request'
 export default {
   login(data) {
-    return request(
-      {
-        url: '/fweb-security/login/dologin',
-        method: 'post',
-        data,
-      },
-    )
+    const option = {
+      url: '/fweb-security/login/dologin',
+      method: 'post',
+      data,
+    }
+    return request(option)
   },
   getPublicKey() {
-    return request({
+    const option = {
       url: '/fweb-security/login/getPublicKey',
       method: 'get',
-    })
+    }
+    return request(option)
   },
   getInfo() {
-    return request({
+    const option = {
       url: '/fweb-security/login/getLoginUserInfo',
       method: 'get',
-    })
+    }
+    return request(option)
   },
   logout() {
-    return request({
+    const option = {
       url: '/fweb-security/login/logout',
       method: 'post',
-    })
+    }
+    return request(option)
   },
 
   // export function fwebRoleMenu(data) {
