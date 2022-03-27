@@ -45,14 +45,14 @@ export default defineConfig({
         'vue/macros',
         'vue-router',
         '@vueuse/core',
-        {
-          '@/api': [
-            // default imports
-            ['default', 'api'],
-          ],
+      ],
+      resolvers: [
+        ElementPlusResolver(),
+        (name) => {
+          if (name.startsWith('$api_'))
+            return { importName: 'default', path: `@/api/${name.slice(5)}` }
         },
       ],
-      resolvers: [ElementPlusResolver()],
       dts: true,
     }),
 

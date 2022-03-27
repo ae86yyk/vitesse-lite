@@ -49,9 +49,9 @@ export const useUserStore = defineStore('user', () => {
       () => {
         return new Promise((resolve, reject) => {
           const { username, password } = userInfo
-          api.user.getPublicKey().then((response) => {
+          $api_user.getPublicKey().then((response) => {
             const enPassword = encryptPasswd(password, response.data.publicKey, response.data.random)
-            return api.user.login({ userCode: username.trim(), enPassword, rememberMe: false, captcha: '' })
+            return $api_user.login({ userCode: username.trim(), enPassword, rememberMe: false, captcha: '' })
           }).then((response: any) => {
             const { state } = response
             if (state === 'success') {
@@ -76,7 +76,7 @@ export const useUserStore = defineStore('user', () => {
 
   function doGetInfo() {
     return new Promise((resolve, reject) => {
-      api.user.getInfo().then((response: any) => {
+      $api_user.getInfo().then((response: any) => {
         const { data_ } = response.result
 
         if (!data_)
@@ -95,7 +95,7 @@ export const useUserStore = defineStore('user', () => {
 
   function doLogout() {
     return new Promise((resolve, reject) => {
-      api.user.logout().then(() => {
+      $api_user.logout().then(() => {
         cookies.remove('token')
         resolve('')
       }).catch((error) => {

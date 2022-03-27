@@ -1,5 +1,4 @@
 import NProgress from 'nprogress'
-import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/stores/user'
 import type { UserModule } from '@/types'
 

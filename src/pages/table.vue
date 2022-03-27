@@ -42,7 +42,7 @@ const {
   isLoading,
   response: tableData,
   execute: search,
-} = api.table.getFileList(query)
+} = $api_table.getFileList(query)
 search()
 
 const debounced = refDebounced(projectName, 500)
