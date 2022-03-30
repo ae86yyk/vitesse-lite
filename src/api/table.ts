@@ -1,16 +1,17 @@
-import { useAxios } from '@vueuse/integrations/useAxios'
-import request from '@/composables/request'
+import type { AxiosRequestConfig } from 'axios'
+import { request, useRequest } from '@/utils/request'
+
 export default {
   getFileList(params) {
-    const option = {
+    const option: AxiosRequestConfig = {
       url: '/bimEngine/linkManager/getProjectPage',
       method: 'get',
       params,
     }
-    return useAxios(option.url, option, request, { immediate: false })
+    return useRequest(option)
   },
   getFileList1(params) {
-    const option = {
+    const option: AxiosRequestConfig = {
       url: '/bimEngine/linkManager/getProjectPage',
       method: 'get',
       params,

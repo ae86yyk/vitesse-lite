@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-form :inline="true" pt-18px pl-18px>
+    <el-form :inline="true" pt-18px pl-18px @submit.prevent>
       <el-form-item label="名称">
         <el-input
-          v-model="query.projectName"
+          v-model.trim="query.projectName"
           clearable
           @keyup.enter="search()"
         />
@@ -19,7 +19,7 @@
     </el-form>
     <el-table
       v-loading="isLoading"
-      :data="tableData"
+      :data="(tableData as any)"
       w-full
       row-key="id"
       border
@@ -45,8 +45,11 @@ const {
 } = $api_table.getFileList(query)
 search()
 
-const debounced = refDebounced(projectName, 500)
-watch(debounced, () => (search()))
+const debounced = refDebounced(projectName, 1000)
+watch(debounced, () => {
+  if (!isLoading.value)
+    search()
+})
 </script>
 
 <style scoped>

@@ -1,6 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { useCookies } from '@vueuse/integrations/useCookies'
-import JSEncrypt from '@/composables/jsencrypt'
+import JSEncrypt from '@/utils/jsencrypt'
 
 const keyStr = 'ABCDEFGHIJKLMNOP' + 'QRSTUVWXYZabcdef' + 'ghijklmnopqrstuv' + 'wxyz0123456789+/' + '='
 function MD5(input: string) {
@@ -64,7 +64,7 @@ export const useUserStore = defineStore('user', () => {
             else {
               reject(response.msg)
             }
-          }).catch((error) => {
+          }).catch((error: Error) => {
             reject(error)
           })
         })
@@ -87,7 +87,7 @@ export const useUserStore = defineStore('user', () => {
         userCode.value = data_.userCode
 
         resolve('')
-      }).catch((error) => {
+      }).catch((error: Error) => {
         reject(error)
       })
     })
@@ -98,7 +98,7 @@ export const useUserStore = defineStore('user', () => {
       $api_user.logout().then(() => {
         cookies.remove('token')
         resolve('')
-      }).catch((error) => {
+      }).catch((error: Error) => {
         reject(error)
       })
     })

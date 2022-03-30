@@ -1,7 +1,9 @@
-import request from '@/composables/request'
+import type { AxiosRequestConfig } from 'axios'
+import { request } from '@/utils/request'
+
 export default {
   login(data) {
-    const option = {
+    const option: AxiosRequestConfig = {
       url: '/fweb-security/login/dologin',
       method: 'post',
       data,
@@ -9,21 +11,21 @@ export default {
     return request(option)
   },
   getPublicKey() {
-    const option = {
+    const option: AxiosRequestConfig = {
       url: '/fweb-security/login/getPublicKey',
       method: 'get',
     }
     return request(option)
   },
   getInfo() {
-    const option = {
+    const option: AxiosRequestConfig = {
       url: '/fweb-security/login/getLoginUserInfo',
       method: 'get',
     }
     return request(option)
   },
   logout() {
-    const option = {
+    const option: AxiosRequestConfig = {
       url: '/fweb-security/login/logout',
       method: 'post',
     }

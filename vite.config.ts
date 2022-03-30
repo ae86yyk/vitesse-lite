@@ -59,7 +59,6 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-components
     Components({
       dirs: [
-        'src/components',
         '**/components',
       ],
       dts: true,

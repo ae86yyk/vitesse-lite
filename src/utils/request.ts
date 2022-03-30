@@ -1,5 +1,6 @@
+import type { AxiosRequestConfig } from 'axios'
 import axios from 'axios'
-import { ElMessage } from 'element-plus'
+import { useAxios } from '@vueuse/integrations/useAxios'
 
 // create an axios instance
 const service = axios.create({
@@ -123,4 +124,7 @@ service.interceptors.response.use(
   },
 )
 
-export default service
+export const request = service
+export const useRequest = (option: AxiosRequestConfig) => {
+  return useAxios(option.url as string, option, request, { immediate: false })
+}
