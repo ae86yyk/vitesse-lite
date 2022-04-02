@@ -1,21 +1,18 @@
-import type { AxiosRequestConfig } from 'axios'
 import { request, useRequest } from '@/utils/request'
 
 export default {
   getFileList(params) {
-    const option: AxiosRequestConfig = {
+    return useRequest({
       url: '/bimEngine/linkManager/getProjectPage',
       method: 'get',
       params,
-    }
-    return useRequest(option)
+    })
   },
   getFileList1(params) {
-    const option: AxiosRequestConfig = {
+    return request({
       url: '/bimEngine/linkManager/getProjectPage',
       method: 'get',
       params,
-    }
-    return request(option)
+    })
   },
 }

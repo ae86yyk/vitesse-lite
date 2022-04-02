@@ -1,35 +1,30 @@
-import type { AxiosRequestConfig } from 'axios'
 import { request } from '@/utils/request'
 
 export default {
   login(data) {
-    const option: AxiosRequestConfig = {
+    return request({
       url: '/fweb-security/login/dologin',
       method: 'post',
       data,
-    }
-    return request(option)
+    })
   },
   getPublicKey() {
-    const option: AxiosRequestConfig = {
+    return request({
       url: '/fweb-security/login/getPublicKey',
       method: 'get',
-    }
-    return request(option)
+    })
   },
   getInfo() {
-    const option: AxiosRequestConfig = {
+    return request({
       url: '/fweb-security/login/getLoginUserInfo',
       method: 'get',
-    }
-    return request(option)
+    })
   },
   logout() {
-    const option: AxiosRequestConfig = {
+    return request({
       url: '/fweb-security/login/logout',
       method: 'post',
-    }
-    return request(option)
+    })
   },
 
   // export function fwebRoleMenu(data) {
