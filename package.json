@@ -10,7 +10,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@vueuse/core": "8.2.6",
+    "@vueuse/core": "8.3.1",
     "@vueuse/integrations": "8.2.6",
     "axios": "0.26.1",
     "element-plus": "2.1.10",
